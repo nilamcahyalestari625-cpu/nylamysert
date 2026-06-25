@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nylamysert - Riwayat Pesanan</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.svg" alt="nylamysert logo" class="logo">
+        <span class="brand-text">nylamysert</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav class="nav">
+        <ul>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="harga.html">Harga</a></li>
+          <li><a href="lokasi.html">Lokasi</a></li>
+          <li><a href="notelp.html">No Telp</a></li>
+          <li><a href="riwayat.html" class="active">Riwayat</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="content container">
+      <section class="hero">
+        <h1>Riwayat Pesanan</h1>
+        <p>Semua pesanan yang Anda kirimkan akan muncul di sini (tersimpan di browser Anda).</p>
+      </section>
+      <section class="section">
+        <div class="history-list"></div>
+        <div style="margin-top:0.75rem"><button class="clear-history">Bersihkan Riwayat</button></div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+  // Load history from localStorage
+  const list = document.querySelector('.history-list');
+  const clearBtn = document.querySelector('.clear-history');
+  const render = () => {
+    const data = JSON.parse(localStorage.getItem('cyaasert_history') || '[]');
+    list.innerHTML = '';
+    if (!data || data.length === 0) {
+      list.innerHTML = '<p class="history-empty">Belum ada riwayat pesanan.</p>';
+      return;
+    }
+    data.slice().reverse().forEach(entry => {
+      const item = document.createElement('div');
+      item.className = 'history-item';
+      item.innerHTML = `<h4>${entry.name} — ${entry.service} — ${entry.payment}</h4><div class="history-meta">${new Date(entry.time).toLocaleString()}</div><div>${entry.items.map(i=>`${i.name} x${i.qty}`).join(', ')}</div><div style="margin-top:0.5rem;color:#444">Catatan: ${entry.note||'-'}</div>`;
+      list.appendChild(item);
+    });
+  };
+  clearBtn.addEventListener('click', () => { if (confirm('Hapus semua riwayat?')) { localStorage.removeItem('cyaasert_history'); render(); } });
+  render();
+  </script>
+</body>
+</html>

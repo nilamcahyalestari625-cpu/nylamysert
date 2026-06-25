@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nylamysert - Menu</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.svg" alt="nylamysert logo" class="logo">
+        <span class="brand-text">nylamysert</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav class="nav">
+        <ul>
+          <li><a href="menu.html" class="active">Menu</a></li>
+          <li><a href="harga.html">Harga</a></li>
+          <li><a href="lokasi.html">Lokasi</a></li>
+          <li><a href="notelp.html">No Telp</a></li>
+          <li><a href="riwayat.html">Riwayat</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="menu-layout">
+        <div class="menu-grid">
+          <article class="menu-item" data-name="Espresso" data-price="10000">
+            <picture>
+              <img class="menu-thumb" src="images/espresso.jpg" alt="Espresso">
+            </picture>
+            <h3>Espresso</h3>
+            <p>Kopi espresso pekat</p>
+            <span class="price">Rp10.000</span>
+            <div class="qty-controls">
+              <button type="button" class="qty-remove">-</button>
+              <span class="qty-count">0</span>
+              <button type="button" class="qty-add">+</button>
+            </div>
+          </article>
+          <article class="menu-item" data-name="Latte" data-price="18000">
+            <picture>
+              <img class="menu-thumb" src="images/latte.jpg" alt="Latte">
+            </picture>
+            <h3>Latte</h3>
+            <p>Espresso + susu</p>
+            <span class="price">Rp18.000</span>
+            <div class="qty-controls">
+              <button type="button" class="qty-remove">-</button>
+              <span class="qty-count">0</span>
+              <button type="button" class="qty-add">+</button>
+            </div>
+          </article>
+          <article class="menu-item" data-name="Cappuccino" data-price="18000">
+            <picture>
+              <img class="menu-thumb" src="images/cappuccino.jpg" alt="Cappuccino">
+            </picture>
+            <h3>Cappuccino</h3>
+            <p>Espresso + foam</p>
+            <span class="price">Rp18.000</span>
+            <div class="qty-controls">
+              <button type="button" class="qty-remove">-</button>
+              <span class="qty-count">0</span>
+              <button type="button" class="qty-add">+</button>
+            </div>
+          </article>
+          <article class="menu-item" data-name="Cold Brew" data-price="22000">
+            <picture>
+              <img class="menu-thumb" src="images/coldbrew.jpg" alt="Cold Brew">
+            </picture>
+            <h3>Cold Brew</h3>
+            <p>Kopi seduh dingin</p>
+            <span class="price">Rp22.000</span>
+            <div class="qty-controls">
+              <button type="button" class="qty-remove">-</button>
+              <span class="qty-count">0</span>
+              <button type="button" class="qty-add">+</button>
+            </div>
+          </article>
+          <article class="menu-item" data-name="Brownie" data-price="15000">
+            <picture>
+              <img class="menu-thumb" src="images/brownie.jpg" alt="Brownie">
+            </picture>
+            <h3>Brownie</h3>
+            <p>Kue cokelat</p>
+            <span class="price">Rp15.000</span>
+            <div class="qty-controls">
+              <button type="button" class="qty-remove">-</button>
+              <span class="qty-count">0</span>
+              <button type="button" class="qty-add">+</button>
+            </div>
+          </article>
+          <article class="menu-item" data-name="Sandwich" data-price="25000">
+            <picture>
+              <img class="menu-thumb" src="images/sandwich.jpg" alt="Sandwich">
+            </picture>
+            <h3>Dessert</h3>
+            <p>Puding Karamel</p>
+            <span class="price">Rp25.000</span>
+            <div class="qty-controls">
+              <button type="button" class="qty-remove">-</button>
+              <span class="qty-count">0</span>
+              <button type="button" class="qty-add">+</button>
+            </div>
+          </article>
+        </div>
+
+        <aside class="cart-panel">
+          <h2>Keranjang</h2>
+          <div class="cart-items">
+            <p class="empty-cart">Belum ada pesanan. Tambahkan menu terlebih dahulu.</p>
+          </div>
+          <div class="cart-summary">
+            <div class="cart-total">Total: Rp0</div>
+          </div>
+          <div class="cart-form">
+            <label>
+              Nama Pemesan
+              <input type="text" class="cart-name" placeholder="Masukkan nama" autocomplete="name">
+            </label>
+            <label>
+              Pilih Layanan
+              <div style="display:flex;gap:0.75rem;margin-top:0.5rem">
+                <label><input type="radio" name="service" value="dine-in" checked> Dine In</label>
+                <label><input type="radio" name="service" value="pick-up"> Pick Up</label>
+              </div>
+            </label>
+            <label>
+              Metode Pembayaran
+              <select class="cart-payment" style="margin-top:0.5rem;padding:0.6rem;border-radius:8px;border:1px solid rgba(0,0,0,0.12)">
+                <option value="cash">Tunai</option>
+                <option value="card">Kartu/Debit</option>
+                <option value="ewallet">E-Wallet</option>
+              </select>
+            </label>
+            <label>
+              Catatan (opsional)
+              <textarea class="cart-note" rows="3" placeholder="Contoh: kurang manis"></textarea>
+            </label>
+            <button type="button" class="cart-submit">Pesan Sekarang</button>
+            <p class="cart-message"></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+
+  <button class="view-cart-btn" aria-label="Lihat Keranjang">
+    <span>Keranjang</span>
+    <span class="view-cart-count">0</span>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
