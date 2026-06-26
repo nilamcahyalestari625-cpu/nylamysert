@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nylamysert - Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.svg" alt="nylamysert logo" class="logo">
+        <span class="brand-text">nylamysert</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav class="nav">
+        <ul>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="harga.html">Harga</a></li>
+          <li><a href="lokasi.html">Lokasi</a></li>
+          <li><a href="notelp.html">No Telp</a></li>
+          <li><a href="riwayat.html">Riwayat</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="content container">
+      <section class="hero">
+        <h1>Masuk ke Akun Anda</h1>
+        <p>Login untuk mengakses menu, mengajukan pesanan, dan melihat riwayat.</p>
+      </section>
+      <section class="section">
+        <form class="login-form" id="loginForm">
+          <label>
+            Nama pengguna
+            <input type="text" name="username" placeholder="Masukkan nama Anda" autocomplete="username" required>
+          </label>
+          <label>
+            Kata sandi
+            <input type="password" name="password" placeholder="Masukkan kata sandi" autocomplete="current-password" required>
+          </label>
+          <button type="submit">Login</button>
+          <p class="login-message"></p>
+          <p class="login-note">Gunakan sembarang nama dan kata sandi sederhana. Ini login klien sederhana tanpa server.</p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+  document.getElementById('loginForm').addEventListener('submit', event => {
+    event.preventDefault();
+    const username = event.target.username.value.trim();
+    const password = event.target.password.value.trim();
+    const message = document.querySelector('.login-message');
+
+    if (!username || !password) {
+      message.textContent = 'Nama pengguna dan kata sandi diperlukan.';
+      message.style.color = '#cc3300';
+      return;
+    }
+
+    setAuthData(username);
+    message.textContent = 'Login berhasil! Mengalihkan...';
+    message.style.color = '#1f5e37';
+    setTimeout(() => {
+      window.location.href = 'menu.html';
+    }, 800);
+  });
+  </script>
+</body>
+</html>

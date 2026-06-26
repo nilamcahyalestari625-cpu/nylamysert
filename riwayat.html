@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>nylamysert - Riwayat Pesanan</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="favicon.svg" type="svg+xml">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
   <header class="navbar">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
-        <img src="logo.svg" alt="nylamysert logo" class="logo">
+        <img src="images/logo.svg" alt="nylamysert logo" class="logo">
         <span class="brand-text">nylamysert</span>
       </a>
       <button class="menu-toggle" aria-label="Toggle menu">☰</button>
@@ -40,26 +40,6 @@
     </div>
   </main>
 
-  <script>
-  // Load history from localStorage
-  const list = document.querySelector('.history-list');
-  const clearBtn = document.querySelector('.clear-history');
-  const render = () => {
-    const data = JSON.parse(localStorage.getItem('cyaasert_history') || '[]');
-    list.innerHTML = '';
-    if (!data || data.length === 0) {
-      list.innerHTML = '<p class="history-empty">Belum ada riwayat pesanan.</p>';
-      return;
-    }
-    data.slice().reverse().forEach(entry => {
-      const item = document.createElement('div');
-      item.className = 'history-item';
-      item.innerHTML = `<h4>${entry.name} — ${entry.service} — ${entry.payment}</h4><div class="history-meta">${new Date(entry.time).toLocaleString()}</div><div>${entry.items.map(i=>`${i.name} x${i.qty}`).join(', ')}</div><div style="margin-top:0.5rem;color:#444">Catatan: ${entry.note||'-'}</div>`;
-      list.appendChild(item);
-    });
-  };
-  clearBtn.addEventListener('click', () => { if (confirm('Hapus semua riwayat?')) { localStorage.removeItem('cyaasert_history'); render(); } });
-  render();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
