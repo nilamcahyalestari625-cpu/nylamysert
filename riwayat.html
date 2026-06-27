@@ -41,5 +41,11 @@
   </main>
 
   <script src="script.js"></script>
+  <script>
+    // Proteksi: redirect ke login jika belum login
+    if (!isLoggedIn()) {
+      window.location.href = 'login.html';
+    }
+  </script>
 </body>
 </html>

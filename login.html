@@ -53,24 +53,99 @@
 
   <script src="script.js"></script>
   <script>
-  document.getElementById('loginForm').addEventListener('submit', event => {
-    event.preventDefault();
-    const username = event.target.username.value.trim();
-    const password = event.target.password.value.trim();
-    const message = document.querySelector('.login-message');
+  // Redirect jika sudah login
+  if (isLoggedIn()) {
+    window.location.href = 'menu.html';
+  }
 
-    if (!username || !password) {
-      message.textContent = 'Nama pengguna dan kata sandi diperlukan.';
+  const loginForm = document.getElementById('loginForm');
+  const usernameInput = loginForm.querySelector('input[name="username"]');
+  const passwordInput = loginForm.querySelector('input[name="password"]');
+  const message = document.querySelector('.login-message');
+
+  loginForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    // Reset message
+    message.textContent = '';
+    message.style.color = '';
+
+    // Validasi input
+    if (!username) {
+      message.textContent = 'Masukkan nama pengguna.';
       message.style.color = '#cc3300';
+      usernameInput.focus();
       return;
     }
 
-    setAuthData(username);
-    message.textContent = 'Login berhasil! Mengalihkan...';
-    message.style.color = '#1f5e37';
-    setTimeout(() => {
-      window.location.href = 'menu.html';
-    }, 800);
+    if (!password) {
+      message.textContent = 'Masukkan kata sandi.';
+      message.style.color = '#cc3300';
+      passwordInput.focus();
+      return;
+    }
+
+    if (username.length < 3) {
+      message.textContent = 'Nama pengguna minimal 3 karakter.';
+      message.style.color = '#cc3300';
+      usernameInput.focus();
+      return;
+    }
+
+    if (password.length < 3) {
+      message.textContent = 'Kata sandi minimal 3 karakter.';
+      message.style.color = '#cc3300';
+      passwordInput.focus();
+      return;
+    }
+
+    // Simulasi proses login (bisa diganti dengan API call)
+    try {
+      message.textContent = 'Memproses login...';
+      message.style.color = '#666';
+
+      // Disable button saat proses
+      const submitBtn = loginForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Memproses...';
+
+      // Simulasi delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Set auth data
+      setAuthData(username, password);
+
+      message.textContent = 'Login berhasil! Mengalihkan...';
+      message.style.color = '#1f5e37';
+
+      // Redirect setelah 1 detik
+      setTimeout(() => {
+        window.location.href = 'menu.html';
+      }, 1000);
+    } catch (error) {
+      message.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+      message.style.color = '#cc3300';
+      const submitBtn = loginForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Login';
+    }
+  });
+
+  // Clear pesan error ketika user mulai mengetik
+  usernameInput.addEventListener('input', () => {
+    if (message.textContent) {
+      message.textContent = '';
+      message.style.color = '';
+    }
+  });
+
+  passwordInput.addEventListener('input', () => {
+    if (message.textContent) {
+      message.textContent = '';
+      message.style.color = '';
+    }
   });
   </script>
 </body>

@@ -1,17 +1,35 @@
 // Auth helpers
 const authKey = 'nylamysert_auth';
+const sessionTimeout = 24 * 60 * 60 * 1000; // 24 jam
+
 const getAuthData = () => {
   try {
-    return JSON.parse(localStorage.getItem(authKey)) || null;
+    const data = JSON.parse(localStorage.getItem(authKey)) || null;
+    if (!data) return null;
+    
+    // Check if session expired
+    const now = Date.now();
+    if (now - data.loginTime > sessionTimeout) {
+      clearAuthData();
+      return null;
+    }
+    
+    return data;
   } catch (e) {
     return null;
   }
 };
+
 const authData = getAuthData();
 window.nyAuthData = authData;
 
-const setAuthData = user => {
-  const payload = { loggedIn: true, name: user };
+const setAuthData = (user, password) => {
+  const payload = { 
+    loggedIn: true, 
+    name: user,
+    password: btoa(password), // Simple encoding (not secure, for demo only)
+    loginTime: Date.now()
+  };
   localStorage.setItem(authKey, JSON.stringify(payload));
   window.nyAuthData = payload;
 };
@@ -19,6 +37,18 @@ const setAuthData = user => {
 const clearAuthData = () => {
   localStorage.removeItem(authKey);
   window.nyAuthData = null;
+};
+
+const isLoggedIn = () => {
+  return getAuthData()?.loggedIn === true;
+};
+
+const requireLogin = () => {
+  if (!isLoggedIn()) {
+    window.location.href = 'login.html';
+    return false;
+  }
+  return true;
 };
 
 const renderAuthNav = () => {
