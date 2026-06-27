@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --bg: #fdfbf7; /* Warm latte/cream premium background */
+  --bg: #FFB3D9; /* Soft pink background */
   --card: #ffffff;
   --accent: #a0522d; /* Warm roasted sienna / espresso accent */
   --accent-light: #f9f2eb; /* Soft coffee foam color */
@@ -27,9 +27,9 @@ body {
   color: var(--text);
   line-height: 1.6;
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(160, 82, 45, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(160, 82, 45, 0.03) 0%, transparent 40%),
-    linear-gradient(rgba(253, 251, 247, 0.88), rgba(253, 251, 247, 0.88)),
+    radial-gradient(circle at 10% 20%, rgba(255, 179, 217, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(255, 179, 217, 0.3) 0%, transparent 40%),
+    linear-gradient(rgba(255, 179, 217, 0.88), rgba(255, 179, 217, 0.88)),
     url('images/bg.svg');
   background-size: 120px 120px, 120px 120px, cover, cover;
   background-position: left top, right bottom, center, center;
@@ -41,7 +41,7 @@ body {
 /* Background overrides for pages */
 .page-harga {
   background-image: 
-    linear-gradient(rgba(253, 251, 247, 0.94), rgba(253, 251, 247, 0.94)),
+    linear-gradient(rgba(255, 179, 217, 0.94), rgba(255, 179, 217, 0.94)),
     url("images/bg harga.jpg");
   background-size: cover;
   background-position: center;
@@ -62,10 +62,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Glassmorphism Navbar */
 .navbar {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(160, 82, 45, 0.06);
+  border-bottom: 1px solid rgba(255, 179, 217, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
   position: sticky;
   top: 0;
@@ -273,11 +273,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Main Content Container */
 .content {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   padding: 2.5rem;
   margin: 2rem auto;
   max-width: 1000px;
